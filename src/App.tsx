@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import CurrentTask from './CurrentTask/CurrentTask'
 import Tasks from './Tasks/Tasks'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <>
+      <CurrentTask />
       <Tasks />
       <h1>Vite + React</h1>
       <div className="card">
