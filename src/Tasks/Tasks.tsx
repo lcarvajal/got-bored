@@ -10,10 +10,8 @@ export default function Tasks() {
         <li>Task 1</li>
         <li>Task 1</li>
       </ul>
-      <form>
-        <input type="text" />
-        <button>Add</button>
-      </form>
+      <input type="text" />
+      <button>Add</button>
     </div>
   )
 }

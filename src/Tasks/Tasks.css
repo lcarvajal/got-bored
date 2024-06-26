@@ -2,3 +2,10 @@
   background-color: #2F3237;
   padding: 2rem 5rem;
 }
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
