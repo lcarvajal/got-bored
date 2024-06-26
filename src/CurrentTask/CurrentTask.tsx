@@ -2,7 +2,7 @@ import './CurrentTask.css'
 
 export default function CurrentTask() {
   return (
-    <div className="CurrentTask">
+    <div className="CurrentTask gridItem1">
       <h1>Current Task</h1>
       <p>Current task</p>
       <h3>Time left</h3>

@@ -1,14 +1,12 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.App {
+  background-color: #02040F;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
