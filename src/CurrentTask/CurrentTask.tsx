@@ -1,13 +1,27 @@
 import Timer from '../Timer/Timer'
 import './CurrentTask.css'
 
-export default function CurrentTask() {
+interface CurrentTaskProps {
+  currentTask: string,
+  startNewTask: () => void,
+}
+
+export default function CurrentTask(props: CurrentTaskProps) {
   return (
     <div className="CurrentTask gridItem1">
-      <h1>Current Task</h1>
-      <button>Complete task</button>
-      <button>Start new task</button>
-      <Timer />
-    </div>
+      {props.currentTask === "" ? (
+        <>
+          <p>When you're ready to start learning, click the button below.</p>
+          <button onClick={props.startNewTask}>Start new task</button>
+        </>
+      ) : (
+        <>
+          <h1>{props.currentTask}</h1>
+          <button onClick={props.startNewTask}>Complete task</button>
+          <button onClick={props.startNewTask}>Switch tasks</button>
+          <Timer />
+        </>
+      )}
+    </div >
   );
 }
