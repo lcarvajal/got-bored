@@ -12,7 +12,17 @@ function App() {
 
   return (
     <div className="App">
-      <CurrentTask />
+      {tasks.length > 2 ? (
+        <>
+          <CurrentTask />
+        </>
+      ) :
+        (
+          <div className="App-prompt">
+            <p>Add three tasks to get started.</p>
+          </div>
+        )
+      }
       <Tasks tasks={tasks} addTask={addTask} />
     </div>
   )

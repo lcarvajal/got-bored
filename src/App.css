@@ -10,3 +10,7 @@
   width: 100vw;
   overflow: hidden;
 }
+
+.App-prompt {
+  padding: 2rem 5rem;
+}
