@@ -1,14 +1,13 @@
 import { useState, KeyboardEvent } from 'react'
 import './Tasks.css'
 
-export default function Tasks() {
-  type Task = {
-    id: number
-    name: string
-  }
+interface TaskProps {
+  tasks: string[];
+  addTask: (task: string) => void;
+}
 
-  const [tasks, setTasks] = useState([] as Task[]);
-  const [taskNameToAdd, setTaskNameToAdd] = useState("");
+export default function Tasks(props: TaskProps) {
+  const [taskNameToAdd, setTaskNameToAdd] = useState<string>("");
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
@@ -18,12 +17,7 @@ export default function Tasks() {
 
   function addTaskFromInput() {
     if (taskNameToAdd === "") return
-
-    const task: Task = {
-      id: tasks.length,
-      name: taskNameToAdd,
-    }
-    setTasks([...tasks, task]);
+    props.addTask(taskNameToAdd);
     setTaskNameToAdd("");
   }
 
@@ -31,8 +25,8 @@ export default function Tasks() {
     <div className="Tasks gridItem2">
       <h1>Tasks</h1>
       <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.name}</li>
+        {props.tasks.map((task, index) => (
+          <li key={index}>{task}</li>
         ))}
       </ul>
       <input type="text" value={taskNameToAdd} onChange={e => { setTaskNameToAdd(e.target.value) }} onKeyDown={handleKeyDown} />
