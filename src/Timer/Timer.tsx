@@ -7,7 +7,6 @@ export default function Timer() {
   const seconds = timeLeft % 60;
 
   useEffect(() => {
-    // Exit early when we reach 0
     if (timeLeft <= 0) return;
 
     // Save intervalId to clear the interval when the component re-renders
@@ -19,7 +18,6 @@ export default function Timer() {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
-  // Function to reset the timer
   const resetTimer = () => {
     setTimeLeft(initialTime);
   };
