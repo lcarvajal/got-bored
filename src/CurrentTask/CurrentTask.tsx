@@ -17,8 +17,7 @@ export default function CurrentTask(props: CurrentTaskProps) {
       ) : (
         <>
           <h1>{props.currentTask}</h1>
-          <button onClick={props.startNewTask}>Complete task</button>
-          <button onClick={props.startNewTask}>Switch tasks</button>
+          <button onClick={props.startNewTask}>Switch task</button>
           <Timer />
         </>
       )}
