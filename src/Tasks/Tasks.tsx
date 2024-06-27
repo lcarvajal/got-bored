@@ -2,12 +2,31 @@ import { useState } from 'react'
 import './Tasks.css'
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState([] as string[]);
-  const [taskToAdd, setTaskToAdd] = useState("");
+  type Task = {
+    id: number
+    name: string
+  }
 
-  function addTask(task: string) {
+  const [tasks, setTasks] = useState([] as Task[]);
+  const [taskNameToAdd, setTaskNameToAdd] = useState("");
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      console.log("enter!")
+      addTaskFromInput();
+    }
+    else {
+      console.log("what")
+    }
+  };
+
+  function addTaskFromInput() {
+    const task: Task = {
+      id: tasks.length,
+      name: taskNameToAdd,
+    }
     setTasks([...tasks, task]);
-    setTaskToAdd("");
+    setTaskNameToAdd("");
   }
 
   return (
@@ -15,11 +34,11 @@ export default function Tasks() {
       <h1>Tasks</h1>
       <ul>
         {tasks.map((task) => (
-          <li>{task}</li>
+          <li key={task.id}>{task.name}</li>
         ))}
       </ul>
-      <input type="text" value={taskToAdd} onChange={e => { setTaskToAdd(e.target.value) }} />
-      <button onClick={() => addTask(taskToAdd)}>Add</button>
+      <input type="text" value={taskNameToAdd} onChange={e => { setTaskNameToAdd(e.target.value) }} />
+      <button onClick={addTaskFromInput} onKeyDown={handleKeyDown}>Add</button>
     </div>
   )
 }
