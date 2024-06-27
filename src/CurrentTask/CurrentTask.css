@@ -2,3 +2,7 @@
   background-color: #02040F;
   padding: 2rem 5rem;
 }
+
+.CurrentTask button {
+  margin-right: 1em;
+}
