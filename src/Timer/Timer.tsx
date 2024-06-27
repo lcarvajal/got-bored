@@ -5,26 +5,37 @@ export default function Timer() {
   const [timeLeft, setTimeLeft] = useState<number>(initialTime);
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
+  const [isRunning, setIsRunning] = useState<boolean>(false);
 
   useEffect(() => {
-    if (timeLeft <= 0) return;
+    if (!isRunning) return;
 
-    // Save intervalId to clear the interval when the component re-renders
     const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
+      setTimeLeft(prevTime => {
+        if (prevTime <= 0) {
+          clearInterval(intervalId);
+          return 0;
+        }
+        return prevTime - 1;
+      });
     }, 1000);
 
-    // Clear interval on re-render to avoid memory leaks
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, [isRunning]);
 
-  const resetTimer = () => {
+  function startTimer() {
+    setIsRunning(true);
+  }
+
+  function resetTimer() {
+    setIsRunning(false);
     setTimeLeft(initialTime);
   };
 
   return (
     <div>
-      <h1>{`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}</h1>
+      <h1>{`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}  minutes left</h1>
+      <button onClick={startTimer}>Start Timer</button>
       <button onClick={resetTimer}>Reset Timer</button>
     </div>
   );
