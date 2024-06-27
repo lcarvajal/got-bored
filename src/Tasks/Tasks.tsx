@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, KeyboardEvent } from 'react'
 import './Tasks.css'
 
 export default function Tasks() {
@@ -10,17 +10,15 @@ export default function Tasks() {
   const [tasks, setTasks] = useState([] as Task[]);
   const [taskNameToAdd, setTaskNameToAdd] = useState("");
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
-      console.log("enter!")
       addTaskFromInput();
-    }
-    else {
-      console.log("what")
     }
   };
 
   function addTaskFromInput() {
+    if (taskNameToAdd === "") return
+
     const task: Task = {
       id: tasks.length,
       name: taskNameToAdd,
@@ -37,8 +35,8 @@ export default function Tasks() {
           <li key={task.id}>{task.name}</li>
         ))}
       </ul>
-      <input type="text" value={taskNameToAdd} onChange={e => { setTaskNameToAdd(e.target.value) }} />
-      <button onClick={addTaskFromInput} onKeyDown={handleKeyDown}>Add</button>
+      <input type="text" value={taskNameToAdd} onChange={e => { setTaskNameToAdd(e.target.value) }} onKeyDown={handleKeyDown} />
+      <button onClick={addTaskFromInput}>Add</button>
     </div>
   )
 }
