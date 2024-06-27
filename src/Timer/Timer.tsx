@@ -35,8 +35,7 @@ export default function Timer() {
   return (
     <div>
       <h1>{`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}  minutes left</h1>
-      <button onClick={startTimer}>Start Timer</button>
-      <button onClick={resetTimer}>Reset Timer</button>
+      {isRunning ? <button onClick={resetTimer}>Reset Timer</button> : <button onClick={startTimer}>Start Timer</button>}
     </div>
   );
 }
